@@ -18,6 +18,6 @@ template "#{ora_home}/network/admin/tnsnames.ora" do
               :db_server => node['tns']['db_server'],
               :service => node['tns']['app_service']
               )
-only_if File.exist?("#{ora_home}/network/admin/tnsnames.ora")
+only_if { File.exist?("#{ora_home}/network/admin/tnsnames.ora") && "grep tuxedo /etc/passwd", :environment => { 'HOME' => "/home/tuxedo" }}
 end
 
